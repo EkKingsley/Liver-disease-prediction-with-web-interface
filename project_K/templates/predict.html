@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta charset="UTF-8">
+    {% if title %}
+    <title>{{ title }}</title>
+    {% else %}
+    <title>Liver Disease Prediction</title>
+    {% endif %}
+    <link rel="stylesheet" href="static/bootstrap.min.css">
+    <script src="static/all.min.js"></script>
+    <script src="static/all.min.css"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+</head>
+<body>
+
+<div class="content-section">
+    <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+            <form method="POST" action="">
+        <fieldset class="form-group">
+            <legend class="border-bottom mb-4">Enter Liver Diagnosis</legend>
+            <div class="form-group">
+                {{ form.age.label(class="form-control-label") }}
+                {% if form.age.errors %}
+                {{ form.age(class="form-control form-control-lg is-invalid") }}
+                <div class="invalid-feedback">
+                    {% for error in form.age.errors %}
+                    <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                {{form.age(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+            <div class="form-group">
+                {{ form.tot_bilirubin.label(class="form-control-label") }}
+                {% if form.tot_bilirubin.errors %}
+                {{ form.tot_bilirubin(class="form-control form-control-lg is-invalid") }}
+                <div class="invalid-feedback">
+                    {% for error in form.tot_bilirubin.errors %}
+                    <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                {{form.tot_bilirubin(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+            <div class="form-group">
+                {{ form.direct_bilirubin.label(class="form-control-label") }}
+                {% if form.direct_bilirubin.errors %}
+                {{ form.direct_bilirubin(class="form-control form-control-lg is-invalid") }}
+                <div class="invalid-feedback">
+                    {% for error in form.direct_bilirubin.errors %}
+                    <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                {{form.direct_bilirubin(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+            <div class="form-group">
+                {{ form.tot_proteins.label(class="form-control-label") }}
+                {% if form.tot_proteins.errors %}
+                {{ form.tot_proteins(class="form-control form-control-lg is-invalid") }}
+                <div class="invalid-feedback">
+                    {% for error in form.tot_proteins.errors %}
+                    <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                {{form.tot_proteins(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+            <div class="form-group">
+                {{ form.albumin.label(class="form-control-label") }}
+                {% if form.albumin.errors %}
+                {{ form.albumin(class="form-control form-control-lg is-invalid") }}
+                <div class="invalid-feedback">
+                    {% for error in form.albumin.errors %}
+                    <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                {{form.albumin(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+            <div class="form-group">
+                {{ form.ag_ratio.label(class="form-control-label") }}
+                {% if form.ag_ratio.errors %}
+                {{ form.ag_ratio(class="form-control form-control-lg is-invalid") }}
+                <div class="invalid-feedback">
+                    {% for error in form.ag_ratio.errors %}
+                    <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                {{form.ag_ratio(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+            <div class="form-group">
+                {{ form.sgot.label(class="form-control-label") }}
+                {% if form.sgot.errors %}
+                {{ form.sgot(class="form-control form-control-lg is-invalid") }}
+                <div class="invalid-feedback">
+                    {% for error in form.sgot.errors %}
+                    <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                {{form.sgot(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+            <div class="form-group">
+                {{ form.sgpt.label(class="form-control-label") }}
+                {% if form.sgpt.errors %}
+                {{ form.sgpt(class="form-control form-control-lg is-invalid") }}
+                <div class="invalid-feedback">
+                    {% for error in form.sgpt.errors %}
+                    <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                {{form.sgpt(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+            <div class="form-group">
+                {{ form.alkphos.label(class="form-control-label") }}
+                {% if form.alkphos.errors %}
+                {{ form.alkphos(class="form-control form-control-lg is-invalid") }}
+                <div class="invalid-feedback">
+                    {% for error in form.alkphos.errors %}
+                    <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                {{form.alkphos(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+        </fieldset>
+        <div class="form-group">
+                {{ form.submit(class="btn btn-outline-info") }}
+        </div>
+    </form>
+    {% if predict %}
+            {% if predict == 0 %}
+                <p>Liver Disease Status is : Negative</p>
+            {% else %}
+                <p>Liver Disease Status is : Positive</p>
+            {% endif %}
+    {% endif %}
+
+            {% if data %}
+                {% for d in data %}
+                    <h5>{{d}}</h5><br>
+                {% endfor %}
+            {% endif %}
+        </div>
+        <div class="col-md-4"></div>
+    </div>
+
+</div>
+
+
+
+<script src="static/jquery-1.11.3.min.js"></script>
+<script src="static/text.js"></script>
+<script src="static/bootstrap.min.js"></script>
+</body>
+</html>
+
+
